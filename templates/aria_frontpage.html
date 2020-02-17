@@ -66,12 +66,14 @@
       <button onclick="window.location.href = '{{get_blog_url(inner_blog)}}';">See More</button>
     </div>
 
+    {% if inner_blog.photo_url %}
     <div class="gfg">
       <p id="my-image">
         photo:
         <img src="{{inner_blog.photo_url}}" />
       </p>
     </div>
+    {% endif %}
 
   </p>
   {% endfor %}
