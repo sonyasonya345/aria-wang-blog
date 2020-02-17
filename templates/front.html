@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>
+    /ascii/
+  </title>
+</head>
+
+<style type="text/css">
+
+</style>
+
+<body>
+  <h1>/ascii/</h1>
+
+  <form method="post">
+    <label>
+      <div>title</div>
+      <input type="text" name="title" value={{title}}>
+    </label>
+
+    <label>
+      <div>art</div>
+      <textarea name="art">{{art}}</textarea>
+    </label>
+
+    <div>{{error}}</div>
+
+    <input type="submit">
+  </form>
+
+  {% if img_url %}
+  <img src="{{img_url}}">
+  {% endif %}
+
+  <hr>
+  {% for inner_art in arts %}
+  <div class="art">
+    <div class="art-title">{{inner_art.title}}</div>
+    <pre class="art-body">{{inner_art.art}}</pre>
+  </div>
+  {% endfor %}
+
+  <div>Queried {{time_passed}} seconds ago</div>
+
+</body>
+
+</html>

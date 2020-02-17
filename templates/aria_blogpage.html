@@ -1,0 +1,26 @@
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {{blog.title}}
+    </div>
+
+    <div class="post-date">
+      {% if blog.created %}
+      {{blog.created.strftime("%b, %d, %Y")}}
+      {% endif %}
+    </div>
+
+    <div class="post-date">
+      {{blog.article}}
+    </div>
+
+    <div>
+      <img src="{{blog.photo_url}}" width="500" height="600" />
+    </div>
+  </div>
+
+  <div>
+    <button onclick="window.location.href = '/';">Return to Main Page</button>
+  </div>
+
+</div>

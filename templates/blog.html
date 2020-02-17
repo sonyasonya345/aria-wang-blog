@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Aria's Blog Site</title>
+</head>
+
+<body>
+  <h1>Welcom to Aria's blog</h1>
+
+  <div style="color: red; font-size: 30px;">{{error}}</div>
+
+  <form method="post" enctype="multipart/form-data">
+    <label>
+      <div>title</div>
+      <input type="text" name="title" value={{title}}>
+    </label>
+
+    <br>
+    <br>
+
+    <label>
+      <div>article</div>
+      <textarea name="article">{{article}}</textarea>
+    </label>
+
+    <br>
+    <br>
+
+    <label>
+      <div>Upload a photo:</div>
+      <input type="file" name="photo" accept="image/png, image/jpeg, image/jpg">
+    </label>
+
+    <br>
+    <br>
+
+    <input type="submit">
+  </form>
+
+  <hr>
+  {% for inner_blog in blogs %}
+  <p style="border-style: solid; border-width: 1px; border-color: green;">
+    <div>
+      <bold>{{inner_blog.title}}</bold>
+    </div>
+
+    <div>
+      {{inner_blog.article}}
+    </div>
+
+    {% if inner_blog.photo %}
+    <img src="/img?img_id={{inner_blog.photo.key().id()}}"></img>
+    {% endif %}
+  </p>
+  {% endfor %}
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.j2' %}
+
+{% block content %}
+<h2> Add Food To Your Shopping Cart </h2>
+
+<form>
+  <input type="text" name="food">
+
+  <br>
+  {% if items %}
+  {% for item in items %}
+  <input type="hidden" name="food" value="{{item}}">
+  {% endfor %}
+  {% endif %}
+
+  <button>add</button>
+
+  <br>
+  <br>
+  <h2> Shopping List</h2>
+  <ul>
+    {% for item in items %}
+    <li>{{item}}</li>
+    {% endfor %}
+  </ul>
+
+</form>
+{% endblock %}

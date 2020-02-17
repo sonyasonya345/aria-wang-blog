@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Aria's Blog Site</title>
+  <style>
+    .gfg {
+      width: auto;
+      text-align: left;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 70%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to Aria's blog</h1>
+
+  <div style="color: red; font-size: 30px;">{{error}}</div>
+
+  <form action={{upload_url}} method="POST" enctype="multipart/form-data">
+    <label>
+      <div>title</div>
+      <input type="text" name="title" value={{title}}>
+    </label>
+
+    <br>
+    <br>
+
+    <label>
+      <div>article</div>
+      <textarea name="article">{{article}}</textarea>
+    </label>
+
+    <br>
+    <br>
+
+    <label>
+      <div>Upload a photo:</div>
+      <input type="file" name="photo" accept="image/png, image/jpeg, image/jpg">
+    </label>
+
+    <br>
+    <br>
+
+    <input type="submit">
+  </form>
+
+  <hr>
+  {% for inner_blog in blogs %}
+  <p style="border-style: solid; border-width: 1px; border-color: green;">
+    <div>
+      Title: <bold>{{inner_blog.title}}</bold>
+    </div>
+
+    <div>
+      artile: {{inner_blog.article}}
+    </div>
+
+    <div>
+      <button onclick="window.location.href = '{{get_blog_url(inner_blog)}}';">See More</button>
+    </div>
+
+    <div class="gfg">
+      <p id="my-image">
+        photo:
+        <img src="{{inner_blog.photo_url}}" />
+      </p>
+    </div>
+
+  </p>
+  {% endfor %}
+
+</body>
+
+</html>
