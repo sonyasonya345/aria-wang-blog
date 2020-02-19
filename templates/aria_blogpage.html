@@ -1,28 +1,24 @@
-<div class="post">
-  <div class="post-heading">
-    <div class="post-title">
-      {{blog.title}}
-    </div>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>{{blog.title}}</title>
+</head>
 
-    <div class="post-date">
-      {% if blog.created %}
-      {{blog.created.strftime("%b, %d, %Y")}}
+<div class="container">
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <div class="card">
+      {% if blog.photo_url %}
+      <img src="{{blog.photo_url}}" class="card-img-top" alt="...">
       {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        {% if blog.created %}
+        {{blog.created.strftime("%b, %d, %Y")}}
+        {% endif %}
+        <p class="card-text">{{blog.article}}</p>
+        <a href="/" class="btn btn-primary">Return to Main Page</a>
+      </div>
     </div>
-
-    <div class="post-date">
-      {{blog.article}}
-    </div>
-
-    {% if blog.photo_url %}
-    <div>
-      <img src="{{blog.photo_url}}" width="500" height="600" />
-    </div>
-    {% endif %}
   </div>
-
-  <div>
-    <button onclick="window.location.href = '/';">Return to Main Page</button>
-  </div>
-
+</div>
 </div>

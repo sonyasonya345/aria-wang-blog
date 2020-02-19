@@ -3,80 +3,62 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Aria's Blog Site</title>
-  <style>
-    .gfg {
-      width: auto;
-      text-align: left;
-      padding: 20px;
-    }
-
-    img {
-      max-width: 70%;
-      height: auto;
-    }
-  </style>
 </head>
 
 <body>
+<div class="container">
   <h1>Welcome to Aria's blog</h1>
 
   <div style="color: red; font-size: 30px;">{{error}}</div>
 
   <form action={{upload_url}} method="POST" enctype="multipart/form-data">
-    <label>
-      <div>title</div>
-      <input type="text" name="title" value={{title}}>
-    </label>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value={{title}}>
+    </div>
 
     <br>
-    <br>
 
-    <label>
-      <div>article</div>
-      <textarea name="article">{{article}}</textarea>
-    </label>
-
-    <br>
-    <br>
-
-    <label>
-      <div>Upload a photo:</div>
-      <input type="file" name="photo" accept="image/png, image/jpeg, image/jpg">
-    </label>
+    <div class="form-group">
+      <label for="article">Article</label>
+      <textarea class="form-control" id="article" name="article" rows=5>
+        {{article}}
+      </textarea>
+    </div>
 
     <br>
-    <br>
 
-    <input type="submit">
+    <div class="form-group">
+      <label for="photo">Upload a photo:</label>
+      <input type="file" class="form-control-file" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg">
+    </div>
+
+    <br />
+
+    <input type="submit" class="btn btn-primary">
   </form>
 
   <hr>
-  {% for inner_blog in blogs %}
-  <p style="border-style: solid; border-width: 1px; border-color: green;">
-    <div>
-      Title: <bold>{{inner_blog.title}}</bold>
+  {% for blog in blogs %}
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <div class="card">
+        {% if blog.photo_url %}
+        <img src="{{blog.photo_url}}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}}</h5>
+          <p class="card-text">{{blog.article}}</p>
+          <a href="{{get_blog_url(blog)}}" class="btn btn-primary">See More</a>
+        </div>
+      </div>
     </div>
-
-    <div>
-      artile: {{inner_blog.article}}
-    </div>
-
-    <div>
-      <button onclick="window.location.href = '{{get_blog_url(inner_blog)}}';">See More</button>
-    </div>
-
-    {% if inner_blog.photo_url %}
-    <div class="gfg">
-      <p id="my-image">
-        photo:
-        <img src="{{inner_blog.photo_url}}" />
-      </p>
-    </div>
-    {% endif %}
-
-  </p>
+  </div>
+  <br />
   {% endfor %}
+</div>
 
 </body>
 
